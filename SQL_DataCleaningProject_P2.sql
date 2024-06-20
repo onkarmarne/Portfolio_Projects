@@ -1,9 +1,12 @@
 /* Data Cleaning in SQL */
 
 /* 1. Standardize date format */
+
 select * from Nashville_Housing_Society
 
+
 /* update Nashville_Housing_Society
+
 set SaleDate = CONVERT(date, SaleDate) */
 
 Alter table Nashville_Housing_Society
@@ -56,7 +59,6 @@ set Property_Split_City = SUBSTRING(PropertyAddress, CHARINDEX(',', PropertyAddr
 
 select * from Nashville_Housing_Society
 
-
 -- EASY WAY TO THE ABOVE TASK
 
 select PARSENAME(Replace(OwnerAddress, ',', '.'), 3)
@@ -100,6 +102,7 @@ set SoldAsVacant = case when SoldAsVacant= 'Y' then 'Yes'
 
 select SoldAsVacant from Nashville_Housing_Society
 
+
 /* 5. Remove Duplicates */
 
 With RowNumCTE as
@@ -111,14 +114,13 @@ order by UniqueID
 from Nashville_Housing_Society
 )
 
-
 delete from RowNumCTE
 where row_num > 1
-
 
 select * from RowNumCTE
 where row_num > 1
 order by PropertyAddress
+
 
 /* 6. Delete unused Columns */
 
